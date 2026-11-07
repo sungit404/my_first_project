@@ -1,0 +1,118 @@
+erDiagram
+    ROLES ||--o{ USERS : "classifies"
+    USERS ||--o{ ROOMS : "creates (landlord)"
+    USERS ||--o{ ROOMS : "approves (admin)"
+    ROOM_TYPES ||--o{ ROOMS : "categorizes"
+    ROOMS ||--o{ ROOM_IMAGES : "has photos"
+    ROOMS ||--o{ AMENITY_ROOM : "lists"
+    AMENITIES ||--o{ AMENITY_ROOM : "assigned via"
+    ROOMS ||--o{ ROOM_APPROVAL_LOGS : "approval history"
+    USERS ||--o{ ROOM_APPROVAL_LOGS : "submits / reviews"
+    USERS ||--o{ BOOKINGS : "books (tenant)"
+    ROOMS ||--o{ BOOKINGS : "booked as"
+    USERS ||--o{ BOOKINGS : "processes (staff)"
+    BOOKINGS ||--o{ PAYMENTS : "paid by"
+    USERS ||--o{ PAYMENTS : "pays / records"
+    USERS ||--o{ ACTIVITY_LOGS : "performs"
+
+    ROLES {
+        integer id PK
+        varchar name "Administrator / Landlord / Tenant"
+        varchar slug
+    }
+    USERS {
+        integer id PK
+        integer role_id FK "role: admin, landlord, tenant"
+        varchar first_name
+        varchar last_name
+        varchar email UK
+        varchar phone
+        varchar password "hashed"
+        varchar status "active / inactive / suspended"
+    }
+    ROOM_TYPES {
+        integer id PK
+        varchar name "Single / Shared / Studio"
+        integer default_capacity
+        decimal default_monthly_rate
+    }
+    ROOMS {
+        integer id PK
+        integer room_type_id FK
+        integer created_by FK "owner landlord"
+        integer approved_by FK "approving admin"
+        varchar room_number UK "e.g. B-101, A-306"
+        integer floor_number
+        varchar title
+        text description
+        text occupancy_type "private / shared"
+        integer capacity "max pax"
+        decimal monthly_rate
+        decimal security_deposit
+        text approval_status "draft / pending / approved / rejected"
+        text room_status "available / occupied / unavailable"
+        boolean is_published
+        text deleted_at "soft delete"
+    }
+    ROOM_IMAGES {
+        integer id PK
+        integer room_id FK
+        varchar image_path
+        boolean is_primary
+        integer sort_order
+    }
+    AMENITIES {
+        integer id PK
+        varchar name UK "Wi-Fi, Aircon, etc."
+        varchar category "comfort / security / study / utility"
+    }
+    AMENITY_ROOM {
+        integer id PK
+        integer room_id FK
+        integer amenity_id FK
+        decimal price "0 = included, >0 = extra / month"
+        text note "free-text label e.g. Free until Dec"
+    }
+    ROOM_APPROVAL_LOGS {
+        integer id PK
+        integer room_id FK
+        integer submitted_by FK
+        integer reviewed_by FK
+        varchar previous_status
+        varchar new_status
+        text remarks
+    }
+    BOOKINGS {
+        integer id PK
+        varchar booking_reference UK "e.g. BK-SEED-0004"
+        integer tenant_id FK
+        integer room_id FK
+        integer processed_by FK
+        date start_date
+        date end_date
+        integer number_of_occupants
+        decimal monthly_rate_at_booking
+        decimal security_deposit_at_booking
+        decimal amenities_total
+        decimal total_amount
+        text status "pending / confirmed / rejected / cancelled / completed"
+    }
+    PAYMENTS {
+        integer id PK
+        integer booking_id FK
+        integer tenant_id FK
+        integer processed_by FK
+        varchar transaction_reference UK
+        decimal amount
+        text payment_method "cash / gcash / bank_transfer / other"
+        text payment_type "deposit / rent / amenity / penalty / other"
+        text status "pending / paid / failed / refunded / cancelled"
+    }
+    ACTIVITY_LOGS {
+        integer id PK
+        integer user_id FK
+        varchar action
+        varchar entity_type
+        integer entity_id
+        varchar ip_address
+    }

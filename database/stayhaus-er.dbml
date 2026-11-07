@@ -1,0 +1,178 @@
+-- StayHaus ER diagram source
+-- Paste this at https://dbdiagram.io → it renders the EER; Export → PNG/PDF for your documentation.
+
+Table roles {
+  id integer [pk, increment]
+  name varchar(50) [unique, not null]
+  slug varchar(50) [unique, not null]
+  description text
+  created_at text
+  updated_at text
+}
+
+Table users {
+  id integer [pk, increment]
+  role_id integer [not null, ref: > roles.id]
+  first_name varchar(100) [not null]
+  last_name varchar(100) [not null]
+  email varchar(255) [unique, not null]
+  phone varchar(20)
+  password varchar(255) [not null]
+  profile_photo varchar(255)
+  status text [not null, note: 'active / inactive / suspended']
+  email_verified_at text
+  last_login_at text
+  remember_token varchar(100)
+  created_at text
+  updated_at text
+}
+
+Table password_reset_tokens {
+  email varchar(255) [pk]
+  token varchar(255) [not null]
+  created_at text
+}
+
+Table room_types {
+  id integer [pk, increment]
+  name varchar(100) [unique, not null]
+  description text
+  default_capacity integer [not null, default: 1]
+  default_monthly_rate decimal(10,2) [not null]
+  created_at text
+  updated_at text
+}
+
+Table rooms {
+  id integer [pk, increment]
+  room_type_id integer [not null, ref: > room_types.id]
+  created_by integer [not null, ref: > users.id, note: 'landlord who owns the room']
+  room_number varchar(20) [unique, not null]
+  floor_number smallint
+  title varchar(150) [not null]
+  description text
+  occupancy_type text [not null, note: 'private / shared']
+  capacity integer [not null]
+  monthly_rate decimal(10,2) [not null]
+  security_deposit decimal(10,2) [not null, default: 0]
+  approval_status text [not null, note: 'draft / pending / approved / rejected']
+  room_status text [not null, note: 'available / occupied / unavailable']
+  rejection_reason text
+  approved_by integer [ref: > users.id, note: 'admin who approved']
+  approved_at text
+  is_published boolean [not null, default: 0]
+  deleted_at text [note: 'soft delete']
+  created_at text
+  updated_at text
+}
+
+Table room_images {
+  id integer [pk, increment]
+  room_id integer [not null, ref: > rooms.id]
+  image_path varchar(255) [not null]
+  alt_text varchar(150)
+  is_primary boolean [not null, default: 0]
+  sort_order smallint [not null, default: 0]
+  created_at text
+  updated_at text
+}
+
+Table amenities {
+  id integer [pk, increment]
+  name varchar(100) [unique, not null]
+  description text
+  category varchar(50) [note: 'comfort / security / study / utility']
+  created_at text
+  updated_at text
+}
+
+Table amenity_room {
+  id integer [pk, increment]
+  room_id integer [not null, ref: > rooms.id]
+  amenity_id integer [not null, ref: > amenities.id]
+  price decimal(10,2) [not null, default: 0, note: '0 = included, >0 = extra per month']
+  note text [note: 'free-text label e.g. "Free until Dec"']
+  created_at text
+  updated_at text
+}
+
+Table room_approval_logs {
+  id integer [pk, increment]
+  room_id integer [not null, ref: > rooms.id]
+  submitted_by integer [not null, ref: > users.id]
+  reviewed_by integer [ref: > users.id]
+  previous_status varchar(20) [not null]
+  new_status varchar(20) [not null]
+  remarks text
+  reviewed_at text
+  created_at text
+  updated_at text
+}
+
+Table bookings {
+  id integer [pk, increment]
+  booking_reference varchar(30) [unique, not null]
+  tenant_id integer [not null, ref: > users.id]
+  room_id integer [not null, ref: > rooms.id]
+  start_date date [not null]
+  end_date date [not null]
+  number_of_occupants integer [not null, default: 1]
+  monthly_rate_at_booking decimal(10,2) [not null]
+  daily_rate_at_booking decimal(10,2)
+  security_deposit_at_booking decimal(10,2) [not null]
+  amenities_total decimal(10,2) [not null, default: 0]
+  total_amount decimal(10,2) [not null]
+  status text [not null, note: 'pending / confirmed / rejected / cancelled / completed']
+  special_requests text
+  processed_by integer [ref: > users.id, note: 'landlord/admin who decided']
+  decision_notes text
+  created_at text
+  updated_at text
+}
+
+Table payments {
+  id integer [pk, increment]
+  booking_id integer [not null, ref: > bookings.id]
+  tenant_id integer [not null, ref: > users.id]
+  processed_by integer [ref: > users.id, note: 'landlord/admin who recorded it']
+  transaction_reference varchar(50) [unique, not null]
+  amount decimal(10,2) [not null]
+  payment_method text [not null, note: 'cash / gcash / bank_transfer / other']
+  payment_type text [not null, note: 'deposit / rent / amenity / penalty / other']
+  status text [not null, note: 'pending / paid / failed / refunded / cancelled']
+  paid_at text
+  notes text
+  created_at text
+  updated_at text
+}
+
+Table activity_logs {
+  id integer [pk, increment]
+  user_id integer [ref: > users.id]
+  action varchar(100) [not null]
+  entity_type varchar(100)
+  entity_id integer
+  description text
+  ip_address varchar(45)
+  created_at text
+}
+
+Table notifications {
+  id char(36) [pk]
+  type varchar(255) [not null]
+  notifiable_type varchar(255) [not null]
+  notifiable_id integer [not null]
+  data text [not null]
+  read_at text
+  created_at text
+  updated_at text
+}
+
+Table settings {
+  id integer [pk, increment]
+  key varchar(100) [unique, not null]
+  value text
+  description varchar(255)
+  created_at text
+  updated_at text
+}

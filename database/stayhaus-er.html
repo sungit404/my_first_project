@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>StayHaus — Database ER Diagram</title>
+<script src="https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.min.js"></script>
+<style>
+  body { font-family: 'Segoe UI', sans-serif; background: #f6f7fb; margin: 0; padding: 24px; }
+  h1 { font-size: 1.2rem; margin: 0 0 4px; }
+  p.hint { color: #666; margin: 0 0 16px; font-size: .85rem; }
+  .toolbar { margin-bottom: 16px; }
+  button { background: #4d65ff; color: #fff; border: 0; padding: 10px 18px; border-radius: 8px; font-size: .9rem; cursor: pointer; }
+  button:hover { background: #3a52e8; }
+  .diagram { background: #fff; border: 1px solid #e3e6ef; border-radius: 12px; padding: 16px; overflow: auto; }
+  .diagram svg { max-width: none; }
+</style>
+</head>
+<body>
+<h1>StayHaus — Database ER Diagram (14 tables)</h1>
+<p class="hint">If shapes don't appear, allow scripts from cdn.jsdelivr.net (needs internet once). Click "Download PNG" to save it for your documentation.</p>
+<div class="toolbar"><button id="dl">Download PNG</button></div>
+<div class="diagram"><pre class="mermaid">
+erDiagram
+    ROLES ||--o{ USERS : "classifies"
+    USERS ||--o{ ROOMS : "creates (landlord)"
+    USERS ||--o{ ROOMS : "approves (admin)"
+    ROOM_TYPES ||--o{ ROOMS : "categorizes"
+    ROOMS ||--o{ ROOM_IMAGES : "has photos"
+    ROOMS ||--o{ AMENITY_ROOM : "lists"
+    AMENITIES ||--o{ AMENITY_ROOM : "assigned via"
+    ROOMS ||--o{ ROOM_APPROVAL_LOGS : "approval history"
+    USERS ||--o{ ROOM_APPROVAL_LOGS : "submits / reviews"
+    USERS ||--o{ BOOKINGS : "books (tenant)"
+    ROOMS ||--o{ BOOKINGS : "booked as"
+    USERS ||--o{ BOOKINGS : "processes (staff)"
+    BOOKINGS ||--o{ PAYMENTS : "paid by"
+    USERS ||--o{ PAYMENTS : "pays / records"
+    USERS ||--o{ ACTIVITY_LOGS : "performs"
+
+    ROLES {
+        integer id PK
+        varchar name "Administrator / Landlord / Tenant"
+        varchar slug
+    }
+    USERS {
+        integer id PK
+        integer role_id FK "role: admin, landlord, tenant"
+        varchar first_name
+        varchar last_name
+        varchar email UK
+        varchar phone
+        varchar password "hashed"
+        varchar status "active / inactive / suspended"
+    }
+    ROOM_TYPES {
+        integer id PK
+        varchar name "Single / Shared / Studio"
+        integer default_capacity
+        decimal default_monthly_rate
+    }
+    ROOMS {
+        integer id PK
+        integer room_type_id FK
+        integer created_by FK "owner landlord"
+        integer approved_by FK "approving admin"
+        varchar room_number UK "e.g. B-101, A-306"
+        integer floor_number
+        varchar title
+        text description
+        text occupancy_type "private / shared"
+        integer capacity "max pax"
+        decimal monthly_rate
+        decimal security_deposit
+        text approval_status "draft / pending / approved / rejected"
+        text room_status "available / occupied / unavailable"
+        boolean is_published
+        text deleted_at "soft delete"
+    }
+    ROOM_IMAGES {
+        integer id PK
+        integer room_id FK
+        varchar image_path
+        boolean is_primary
+        integer sort_order
+    }
+    AMENITIES {
+        integer id PK
+        varchar name UK "Wi-Fi, Aircon, etc."
+        varchar category "comfort / security / study / utility"
+    }
+    AMENITY_ROOM {
+        integer id PK
+        integer room_id FK
+        integer amenity_id FK
+        decimal price "0 = included, >0 = extra / month"
+        text note "free-text label e.g. Free until Dec"
+    }
+    ROOM_APPROVAL_LOGS {
+        integer id PK
+        integer room_id FK
+        integer submitted_by FK
+        integer reviewed_by FK
+        varchar previous_status
+        varchar new_status
+        text remarks
+    }
+    BOOKINGS {
+        integer id PK
+        varchar booking_reference UK "e.g. BK-SEED-0004"
+        integer tenant_id FK
+        integer room_id FK
+        integer processed_by FK
+        date start_date
+        date end_date
+        integer number_of_occupants
+        decimal monthly_rate_at_booking
+        decimal security_deposit_at_booking
+        decimal amenities_total
+        decimal total_amount
+        text status "pending / confirmed / rejected / cancelled / completed"
+    }
+    PAYMENTS {
+        integer id PK
+        integer booking_id FK
+        integer tenant_id FK
+        integer processed_by FK
+        varchar transaction_reference UK
+        decimal amount
+        text payment_method "cash / gcash / bank_transfer / other"
+        text payment_type "deposit / rent / amenity / penalty / other"
+        text status "pending / paid / failed / refunded / cancelled"
+    }
+    ACTIVITY_LOGS {
+        integer id PK
+        integer user_id FK
+        varchar action
+        varchar entity_type
+        integer entity_id
+        varchar ip_address
+    }
+</pre></div>
+<script>
+mermaid.initialize({ startOnLoad: true, theme: 'default', er: { useMaxWidth: false } });
+document.getElementById('dl').addEventListener('click', function () {
+    var svg = document.querySelector('.diagram svg');
+    var xml = new XMLSerializer().serializeToString(svg);
+    var img = new Image();
+    var bbox = svg.getBBox();
+    img.onload = function () {
+        var scale = 2;
+        var c = document.createElement('canvas');
+        c.width = bbox.width * scale + 40; c.height = bbox.height * scale + 40;
+        var ctx = c.getContext('2d');
+        ctx.fillStyle = '#ffffff'; ctx.fillRect(0, 0, c.width, c.height);
+        ctx.drawImage(img, 20, 20, bbox.width * scale, bbox.height * scale);
+        var a = document.createElement('a');
+        a.download = 'stayhaus-er-diagram.png';
+        a.href = c.toDataURL('image/png');
+        a.click();
+    };
+    img.src = 'data:image/svg+xml;base64,' + btoa(unescape(encodeURIComponent(xml)));
+});
+</script>
+</body>
+</html>
