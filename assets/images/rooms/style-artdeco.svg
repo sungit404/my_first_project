@@ -1,0 +1,38 @@
+<svg viewBox="0 0 400 260" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="wallAd" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#123c33"/><stop offset="100%" stop-color="#0c2b25"/>
+    </linearGradient>
+  </defs>
+  <rect width="400" height="260" fill="url(#wallAd)"/>
+  <path d="M0 0 h120 v260 h-120 z" fill="#0e332b" opacity=".5"/>
+  <path d="M60 160 a80 80 0 0 1 160 0" fill="none" stroke="#c9a44a" stroke-width="2" opacity=".55"/>
+  <path d="M80 160 a60 60 0 0 1 120 0" fill="none" stroke="#c9a44a" stroke-width="2" opacity=".45"/>
+  <path d="M100 160 a40 40 0 0 1 80 0" fill="none" stroke="#c9a44a" stroke-width="2" opacity=".35"/>
+  <g transform="translate(60,66)">
+    <rect x="-26" y="-26" width="52" height="52" fill="none" stroke="#c9a44a" stroke-width="3"/>
+    <path d="M-26 26 L26 -26 M-26 0 L0 26 M0 -26 L26 0" stroke="#c9a44a" stroke-width="2" opacity=".7"/>
+  </g>
+  <g transform="translate(340,66)">
+    <rect x="-26" y="-26" width="52" height="52" fill="none" stroke="#c9a44a" stroke-width="3"/>
+    <path d="M-26 26 L26 -26 M-26 0 L0 26 M0 -26 L26 0" stroke="#c9a44a" stroke-width="2" opacity=".7"/>
+  </g>
+  <g fill="#c9a44a">
+    <path d="M140 118 l24 -34 24 34 24 -34 24 34 24 -34 24 34 20 -28 v22 h-164 z" opacity=".9"/>
+  </g>
+  <rect x="140" y="118" width="164" height="52" rx="6" fill="#1d1f24"/>
+  <rect x="148" y="100" width="52" height="34" rx="8" fill="#e9dcb8"/>
+  <rect x="212" y="100" width="52" height="34" rx="8" fill="#2f7f77"/>
+  <rect x="276" y="100" width="52" height="34" rx="8" fill="#e9dcb8"/>
+  <rect x="140" y="160" width="164" height="10" rx="4" fill="#c9a44a"/>
+  <rect x="148" y="170" width="10" height="32" fill="#c9a44a"/>
+  <rect x="286" y="170" width="10" height="32" fill="#c9a44a"/>
+  <rect y="200" width="400" height="60" fill="#101214"/>
+  <path d="M40 216 h320 M60 204 l-8 12 M104 228 l-8 -12 M148 204 l-8 12 M192 228 l-8 -12 M236 204 l-8 12 M280 228 l-8 -12 M324 204 l-8 12" stroke="#c9a44a" stroke-width="2" opacity=".8"/>
+  <g fill="#c9a44a">
+    <circle cx="128" cy="196" r="6" opacity=".95"/><circle cx="272" cy="196" r="6" opacity=".95"/>
+  </g>
+  <circle cx="128" cy="196" r="10" fill="#e9c96a" opacity=".3"/>
+  <circle cx="272" cy="196" r="10" fill="#e9c96a" opacity=".3"/>
+  <path d="M90 60 h60 M310 60 h60" stroke="#c9a44a" stroke-width="2" opacity=".5"/>
+</svg>

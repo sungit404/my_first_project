@@ -1,0 +1,38 @@
+<svg viewBox="0 0 400 260" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="wallCo" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#e8f1f5"/><stop offset="100%" stop-color="#d5e6ee"/>
+    </linearGradient>
+    <linearGradient id="seaCo" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#a8d4e8"/><stop offset="100%" stop-color="#5f9fc4"/>
+    </linearGradient>
+  </defs>
+  <rect width="400" height="260" fill="url(#wallCo)"/>
+  <rect x="40" y="28" width="120" height="128" rx="6" fill="url(#seaCo)"/>
+  <circle cx="132" cy="56" r="14" fill="#f9ecc9"/>
+  <path d="M40 96 q30 -10 60 0 q30 10 60 0 v60 h-120 z" fill="#7fb4d4" opacity=".7"/>
+  <path d="M40 118 q30 -8 60 0 q30 8 60 0 v38 h-120 z" fill="#5f9fc4" opacity=".6"/>
+  <rect x="40" y="28" width="120" height="128" fill="none" stroke="#ffffff" stroke-width="7"/>
+  <line x1="100" y1="28" x2="100" y2="156" stroke="#ffffff" stroke-width="5"/>
+  <line x1="40" y1="92" x2="160" y2="92" stroke="#ffffff" stroke-width="5"/>
+  <line x1="286" y1="0" x2="286" y2="34" stroke="#b98a4e" stroke-width="3"/>
+  <path d="M258 52 a28 18 0 0 1 56 0 z" fill="#d9b678"/>
+  <path d="M266 52 a20 12 0 0 1 40 0 z" fill="#c9a15c"/>
+  <circle cx="286" cy="56" r="4" fill="#f6e3ae"/>
+  <rect y="196" width="400" height="64" fill="#eBDCC0"/>
+  <rect y="193" width="400" height="4" fill="#dcc9a4"/>
+  <rect x="52" y="140" width="120" height="14" rx="7" fill="#f7f5ef"/>
+  <rect x="52" y="118" width="120" height="30" rx="9" fill="#ffffff"/>
+  <rect x="58" y="106" width="46" height="22" rx="8" fill="#fdfcf9"/>
+  <rect x="112" y="106" width="46" height="22" rx="8" fill="#bcd7e6"/>
+  <rect x="52" y="148" width="120" height="8" rx="4" fill="#7fb4d4"/>
+  <rect x="60" y="154" width="104" height="6" rx="3" fill="#ffffff" opacity=".7"/>
+  <rect x="62" y="162" width="8" height="40" fill="#e2cba0"/>
+  <rect x="158" y="162" width="8" height="40" fill="#e2cba0"/>
+  <rect x="62" y="162" width="104" height="6" fill="#f0e4c8"/>
+  <rect x="220" y="176" width="130" height="20" rx="9" fill="#bcd7e6" opacity=".75"/>
+  <rect x="220" y="176" width="130" height="20" rx="9" fill="none" stroke="#8fbcd4" stroke-width="2"/>
+  <path d="M238 186 h18 M264 182 h18 M296 190 h18" stroke="#ffffff" stroke-width="3"/>
+  <circle cx="366" cy="222" r="10" fill="#e8b4a0"/>
+  <path d="M358 226 h16 M362 230 h8" stroke="#c98a72" stroke-width="2"/>
+</svg>

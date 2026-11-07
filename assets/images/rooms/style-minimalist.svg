@@ -1,0 +1,23 @@
+<svg viewBox="0 0 400 260" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="wallMi" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#faf8f4"/><stop offset="100%" stop-color="#efece5"/>
+    </linearGradient>
+  </defs>
+  <rect width="400" height="260" fill="url(#wallMi)"/>
+  <rect y="196" width="400" height="64" fill="#e6e1d6"/>
+  <rect y="194" width="400" height="3" fill="#d5cfc1"/>
+  <rect x="84" y="150" width="220" height="34" rx="8" fill="#d8d2c6"/>
+  <rect x="84" y="140" width="220" height="16" rx="8" fill="#efe9dd"/>
+  <rect x="96" y="128" width="52" height="22" rx="8" fill="#fbfaf7"/>
+  <rect x="154" y="128" width="52" height="22" rx="8" fill="#e9e2d2"/>
+  <rect x="96" y="184" width="6" height="16" fill="#c4bdae"/>
+  <rect x="286" y="184" width="6" height="16" fill="#c4bdae"/>
+  <rect x="290" y="70" width="72" height="6" rx="3" fill="#c9c2b2"/>
+  <rect x="316" y="46" width="20" height="24" rx="3" fill="#cfc7b6"/>
+  <circle cx="330" cy="38" r="6" fill="#b8b0a0"/>
+  <line x1="36" y1="20" x2="36" y2="128" stroke="#cf8141" stroke-width="2" opacity=".9"/>
+  <ellipse cx="36" cy="20" rx="10" ry="8" fill="#cf8141" opacity=".9"/>
+  <rect x="46" y="206" width="300" height="30" rx="12" fill="#d9d3c5" opacity=".55"/>
+  <circle cx="330" cy="216" r="12" fill="#c2ab7e" opacity=".7"/>
+</svg>

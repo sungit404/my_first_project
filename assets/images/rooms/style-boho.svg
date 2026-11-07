@@ -1,0 +1,31 @@
+<svg viewBox="0 0 400 260" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="wallBo" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#f4e8d7"/><stop offset="100%" stop-color="#ecdcc6"/>
+    </linearGradient>
+  </defs>
+  <rect width="400" height="260" fill="url(#wallBo)"/>
+  <rect y="192" width="400" height="68" fill="#cf9d6d"/>
+  <line x1="0" y1="216" x2="400" y2="216" stroke="#bd8a5c" stroke-width="2"/>
+  <path d="M150 36 l14 18 14-18 14 18 14-18 14 18 14-18 14 18 10-14 v56 h-108 v-56 z" fill="#f7f2e8" opacity=".95"/>
+  <path d="M160 74 h88 M156 60 h96 M166 88 h68" stroke="#d9cbb2" stroke-width="3" fill="none"/>
+  <path d="M170 96 c14 10 44 10 60 0" stroke="#d9cbb2" stroke-width="3" fill="none"/>
+  <line x1="300" y1="0" x2="300" y2="30" stroke="#8a6b48" stroke-width="2"/>
+  <path d="M300 30 c-16 4 -22 16 -20 28 c10 4 22 0 26 -12 M300 30 c16 4 22 16 20 28 c-10 4 -22 0 -26 -12" fill="#5f8a4e"/>
+  <line x1="120" y1="0" x2="120" y2="22" stroke="#8a6b48" stroke-width="2"/>
+  <path d="M120 22 c-12 3 -17 13 -15 23 c9 3 19 0 22 -10 M120 22 c12 3 17 13 15 23 c-9 3 -19 0 -22 -10" fill="#6f9a5c"/>
+  <rect x="196" y="106" width="140" height="16" rx="7" fill="#a8763e"/>
+  <rect x="166" y="122" width="200" height="58" rx="12" fill="#e8dbc4"/>
+  <rect x="166" y="122" width="200" height="20" rx="10" fill="#dcc9a8"/>
+  <rect x="178" y="92" width="56" height="38" rx="10" fill="#c96f4a"/>
+  <rect x="240" y="92" width="56" height="38" rx="10" fill="#d9a544"/>
+  <rect x="302" y="92" width="52" height="38" rx="10" fill="#8a9a6b"/>
+  <rect x="166" y="150" width="200" height="12" rx="5" fill="#b0723f"/>
+  <rect x="176" y="180" width="10" height="20" fill="#7c5228"/>
+  <rect x="346" y="180" width="10" height="20" fill="#7c5228"/>
+  <rect x="120" y="200" width="290" height="30" rx="12" fill="#b85c38" opacity=".75"/>
+  <path d="M130 215 l20 0 M170 206 l0 18 M210 215 l20 0 M250 206 l0 18 M290 215 l20 0 M330 206 l0 18" stroke="#e8d3ac" stroke-width="3"/>
+  <circle cx="60" cy="210" r="26" fill="#5f8a4e" opacity=".28"/>
+  <rect x="46" y="150" width="28" height="34" rx="13" fill="#c87f56"/>
+  <path d="M60 122 c-10 10 -14 20 -12 30 M60 122 c10 8 14 18 12 28 M60 122 c0 -10 2 -16 0 -22" stroke="#5f8a4e" stroke-width="3" fill="none"/>
+</svg>
